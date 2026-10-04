@@ -630,6 +630,18 @@
         </div>
         <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
       </div>
+      <div class="criterio-card" data-key="crise_existencial">
+        <div class="criterio-nome">Busca de Sentido & Crise Existencial</div>
+        <div class="criterio-legenda">1 = Crise existencial aguda/vazio profundo; 3 = Questionamentos geríveis; 5 = Senso claro de propósito.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      </div>
       <div class="criterio-card" data-key="vitalidade">
         <div class="criterio-nome">Vitalidade & Humor</div>
         <div class="criterio-legenda">1 = Apatia/Exaustão extrema; 3 = Disposição moderada; 5 = Energia e motivação altas.</div>
@@ -1099,21 +1111,22 @@
 
   <script>
     const perfisFoco = {
-      ahsd: { nome: "AH/SD (Altas Habilidades / Superdotação)", prioridades: ["nutricao_intelectual", "autocompaixao", "produtividade_criativa", "ansiedade"] },
-      dupla_excepcionalidade: { nome: "Dupla Excepcionalidade (AH/SD + Neurodivergência)", prioridades: ["nutricao_intelectual", "foco_estudos", "sobrecarga", "autocompaixao"] },
+      ahsd: { nome: "AH/SD (Altas Habilidades / Superdotação)", prioridades: ["nutricao_intelectual", "crise_existencial", "autocompaixao", "ansiedade"] },
+      dupla_excepcionalidade: { nome: "Dupla Excepcionalidade (AH/SD + Neurodivergência)", prioridades: ["nutricao_intelectual", "crise_existencial", "foco_estudos", "sobrecarga"] },
       tdah: { nome: "TDAH (Déficit de Atenção / Hiperatividade)", prioridades: ["foco_estudos", "rotina_domestica", "qualidade_sono", "produtividade_criativa"] },
       tea: { nome: "TEA (Transtorno do Espectro Autista)", prioridades: ["sobrecarga", "rotinas_autocuidado", "relacionamento", "qualidade_sono"] },
       transtorno_bipolar: { nome: "Transtorno Bipolar / Ciclotimia", prioridades: ["vitalidade", "qualidade_sono", "cuidados_medicos", "ansiedade"] },
-      depressao: { nome: "Transtorno Depressivo (Unipolar)", prioridades: ["vitalidade", "qualidade_sono", "rotinas_autocuidado", "alimentacao"] },
+      depressao: { nome: "Transtorno Depressivo (Unipolar)", prioridades: ["vitalidade", "qualidade_sono", "crise_existencial", "rotinas_autocuidado"] },
       borderline: { nome: "Transtorno de Personalidade Borderline (TPB)", prioridades: ["ansiedade", "vitalidade", "relacionamento", "autocompaixao"] },
       personalidade_geral: { nome: "Outros Transtornos de Personalidade", prioridades: ["autocompaixao", "relacionamento", "rotina_domestica", "ansiedade"] },
       transtornos_alimentares: { nome: "Transtornos Alimentares", prioridades: ["alimentacao", "autocompaixao", "rotinas_autocuidado", "ansiedade"] },
-      burnout: { nome: "Burnout / Exaustão Profissional & Acadêmica", prioridades: ["qualidade_sono", "vitalidade", "hobbies", "sobrecarga"] },
-      luto_perdas: { nome: "Luto, Crises e Rupturas Relacionais", prioridades: ["vitalidade", "ansiedade", "autocompaixao", "relacionamento"] },
+      burnout: { nome: "Burnout / Exaustão Profissional & Acadêmica", prioridades: ["qualidade_sono", "vitalidade", "crise_existencial", "sobrecarga"] },
+      luto_perdas: { nome: "Luto, Crises e Rupturas Relacionais", prioridades: ["vitalidade", "ansiedade", "crise_existencial", "relacionamento"] },
       geral: { nome: "Geral / Saúde Mental & Bem-Estar", prioridades: ["ansiedade", "vitalidade", "alimentacao", "qualidade_sono"] }
     };
     const nomesCriterios = {
       ansiedade: "Ansiedade & Ruminação",
+      crise_existencial: "Busca de Sentido & Crise Existencial",
       vitalidade: "Vitalidade & Humor",
       sobrecarga: "Sobrecarga Sensorial",
       autocompaixao: "Autocompaixão & Flexibilidade",
@@ -1132,7 +1145,7 @@
       hobbies: "Hobbies & Desconexão"
     };
     const categoriasAreas = {
-      "Dimensão Neuroemocional": ["ansiedade", "vitalidade", "sobrecarga", "autocompaixao"],
+      "Dimensão Neuroemocional": ["ansiedade", "crise_existencial", "vitalidade", "sobrecarga", "autocompaixao"],
       "Foco & Cognição": ["nutricao_intelectual", "foco_estudos", "produtividade_criativa"],
       "Saúde Integral & Rotina": ["qualidade_sono", "rotinas_autocuidado", "alimentacao", "hidratacao", "exercicios", "cuidados_medicos", "rotina_domestica", "gestao_financeira"],
       "Conexões & Lazer": ["relacionamento", "hobbies"]
