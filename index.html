@@ -828,6 +828,18 @@
         </div>
         <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
       </div>
+      <div class="criterio-card" data-key="conexao_social">
+        <div class="criterio-nome">Conexão Social & Sentido de Pertencimento</div>
+        <div class="criterio-legenda">1 = Isolamento/Alienação; 3 = Interações funcionais/Rede limitada; 5 = Rede sólida e pertença clara.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      </div>
       <div class="criterio-card" data-key="hobbies">
         <div class="criterio-nome">Hobbies & Desconexão</div>
         <div class="criterio-legenda">1 = Sem tempo para si/Cansaço; 3 = Lazer passivo; 5 = Imersão em hobbies/Desconexão real.</div>
@@ -1114,14 +1126,14 @@
       ahsd: { nome: "AH/SD (Altas Habilidades / Superdotação)", prioridades: ["nutricao_intelectual", "crise_existencial", "autocompaixao", "ansiedade"] },
       dupla_excepcionalidade: { nome: "Dupla Excepcionalidade (AH/SD + Neurodivergência)", prioridades: ["nutricao_intelectual", "crise_existencial", "foco_estudos", "sobrecarga"] },
       tdah: { nome: "TDAH (Déficit de Atenção / Hiperatividade)", prioridades: ["foco_estudos", "rotina_domestica", "qualidade_sono", "produtividade_criativa"] },
-      tea: { nome: "TEA (Transtorno do Espectro Autista)", prioridades: ["sobrecarga", "rotinas_autocuidado", "relacionamento", "qualidade_sono"] },
+      tea: { nome: "TEA (Transtorno do Espectro Autista)", prioridades: ["sobrecarga", "rotinas_autocuidado", "relacionamento", "conexao_social"] },
       transtorno_bipolar: { nome: "Transtorno Bipolar / Ciclotimia", prioridades: ["vitalidade", "qualidade_sono", "cuidados_medicos", "ansiedade"] },
-      depressao: { nome: "Transtorno Depressivo (Unipolar)", prioridades: ["vitalidade", "qualidade_sono", "crise_existencial", "rotinas_autocuidado"] },
-      borderline: { nome: "Transtorno de Personalidade Borderline (TPB)", prioridades: ["ansiedade", "vitalidade", "relacionamento", "autocompaixao"] },
+      depressao: { nome: "Transtorno Depressivo (Unipolar)", prioridades: ["vitalidade", "qualidade_sono", "crise_existencial", "conexao_social"] },
+      borderline: { nome: "Transtorno de Personalidade Borderline (TPB)", prioridades: ["ansiedade", "vitalidade", "relacionamento", "conexao_social"] },
       personalidade_geral: { nome: "Outros Transtornos de Personalidade", prioridades: ["autocompaixao", "relacionamento", "rotina_domestica", "ansiedade"] },
       transtornos_alimentares: { nome: "Transtornos Alimentares", prioridades: ["alimentacao", "autocompaixao", "rotinas_autocuidado", "ansiedade"] },
       burnout: { nome: "Burnout / Exaustão Profissional & Acadêmica", prioridades: ["qualidade_sono", "vitalidade", "crise_existencial", "sobrecarga"] },
-      luto_perdas: { nome: "Luto, Crises e Rupturas Relacionais", prioridades: ["vitalidade", "ansiedade", "crise_existencial", "relacionamento"] },
+      luto_perdas: { nome: "Luto, Crises e Rupturas Relacionais", prioridades: ["vitalidade", "ansiedade", "crise_existencial", "conexao_social"] },
       geral: { nome: "Geral / Saúde Mental & Bem-Estar", prioridades: ["ansiedade", "vitalidade", "alimentacao", "qualidade_sono"] }
     };
     const nomesCriterios = {
@@ -1142,13 +1154,14 @@
       rotina_domestica: "Rotina Doméstica / Organização",
       gestao_financeira: "Gestão Financeira",
       relacionamento: "Relacionamento Afetivo / Social",
+      conexao_social: "Conexão Social & Sentido de Pertencimento",
       hobbies: "Hobbies & Desconexão"
     };
     const categoriasAreas = {
       "Dimensão Neuroemocional": ["ansiedade", "crise_existencial", "vitalidade", "sobrecarga", "autocompaixao"],
       "Foco & Cognição": ["nutricao_intelectual", "foco_estudos", "produtividade_criativa"],
       "Saúde Integral & Rotina": ["qualidade_sono", "rotinas_autocuidado", "alimentacao", "hidratacao", "exercicios", "cuidados_medicos", "rotina_domestica", "gestao_financeira"],
-      "Conexões & Lazer": ["relacionamento", "hobbies"]
+      "Conexões & Lazer": ["relacionamento", "conexao_social", "hobbies"]
     };
     let instChartLinha = null;
     let instChartRadar = null;
