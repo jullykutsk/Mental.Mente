@@ -46,7 +46,7 @@
     
     .container { max-width: 800px; margin: 0 auto; flex: 1; width: 100%; }
     
-    /* Cabeçalho com Banner de Altura Exata (160px) */
+    /* Cabeçalho com Banner Largo */
     .header-marca {
       width: 100%;
       margin-bottom: 14px;
@@ -59,7 +59,7 @@
     }
     .logo-img {
       width: 100%;
-      height: 160px; /* Altura exata solicitada de 160px */
+      height: 160px;
       display: block;
       object-fit: cover;
       object-position: center;
@@ -372,7 +372,6 @@
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border-color);
     }
-    
     .btn-discreto {
       background: transparent;
       border: 1px solid var(--border-light);
@@ -492,7 +491,7 @@
       border: 1px solid var(--border-color);
       border-radius: 12px;
       width: 100%;
-      max-width: 600px;
+      max-width: 650px;
       max-height: 85vh;
       display: flex;
       flex-direction: column;
@@ -531,6 +530,24 @@
     .modal-body h3:first-child { margin-top: 0; }
     .modal-body p { margin-bottom: 8px; }
     
+    /* Tabela do Mapa de Sobreposição */
+    .tabela-mapa {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.78rem;
+    }
+    .tabela-mapa th, .tabela-mapa td {
+      border: 1px solid var(--border-light);
+      padding: 6px 8px;
+      text-align: left;
+    }
+    .tabela-mapa th {
+      background: var(--cat-bg);
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+    
     .autor-credito {
       margin-top: 16px;
       padding-top: 10px;
@@ -547,7 +564,7 @@
 <body data-theme="light">
   <div class="container">
     
-    <!-- Cabeçalho com Banner de Altura Exata (160px) -->
+    <!-- Cabeçalho com Banner -->
     <div class="header-marca">
       <img src="logo.png" alt="Dashboard Psicoeducativo" class="logo-img">
     </div>
@@ -842,6 +859,15 @@
           Carregando prontuário de evolução...
         </div>
       </div>
+      
+      <!-- Botão Psicoeducativo para Abrir o Mapa de Sobreposição -->
+      <div class="card" style="text-align: center;">
+        <div class="card-title" style="justify-content: center;">Guia Psicoeducativo de Apoio</div>
+        <div style="font-size:0.82rem; color:var(--text-dimmed); margin-bottom: 12px;">
+          Consulte o mapa fenotípico de sobreposição e diferenciação clínica para compreender sem confusões as nuances entre traços comportamentais e neurodivergências.
+        </div>
+        <button class="btn-guardar" onclick="abrirModalMapa()">Abrir Mapa de Sobreposição e Diferenciação</button>
+      </div>
       <div class="card">
         <div class="card-title">Tendência do Saldo Emocional (30 Dias)</div>
         <div class="chart-box">
@@ -895,6 +921,182 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal do Mapa de Sobreposição e Diferenciação -->
+  <div class="modal-overlay" id="modal-mapa" onclick="fecharModalMapaFora(event)">
+    <div class="modal-box" style="max-width: 800px;">
+      <div class="modal-header">
+        <span>Mapa de Sobreposição e Diferenciação Fenotípica</span>
+        <button class="modal-close" onclick="fecharModalMapa()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Este guia psicoeducativo visa apoiar a compreensão diferencial de traços que frequentemente se sobrepõem na prática clínica, auxiliando no autoconhecimento e servindo como ponte para o diálogo com profissionais de saúde mental.</p>
+        
+        <div style="overflow-x: auto;">
+          <table class="tabela-mapa">
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>AH/SD</th>
+                <th>TDAH</th>
+                <th>TEA</th>
+                <th>Bipolaridade</th>
+                <th>Borderline</th>
+                <th>Ansiedade</th>
+                <th>TOC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pensamento Rápido</strong></td>
+                <td>Frequente, associativo e complexo</td>
+                <td>Frequente (distração/impulsividade)</td>
+                <td>Organizado em torno de interesses</td>
+                <td>Acelera em episódios</td>
+                <td>Acelera em crises emocionais</td>
+                <td>Acelera por preocupação/ameaça</td>
+                <td>Preso em dúvidas/possibilidades</td>
+              </tr>
+              <tr>
+                <td><strong>Hiperfoco</strong></td>
+                <td>Interesse intelectual profundo</td>
+                <td>Intenso, geralmente variável</td>
+                <td>Restritos e persistentes</td>
+                <td>Ocorre em mania/hipomania</td>
+                <td>Em pessoas/relacionamentos</td>
+                <td>Foco na ameaça</td>
+                <td>Foco em obsessões/rituais</td>
+              </tr>
+              <tr>
+                <td><strong>Tédio Intenso</strong></td>
+                <td>Comum por falta de complexidade</td>
+                <td>Muito comum (desatenção)</td>
+                <td>Falta de previsibilidade</td>
+                <td>Em fases de energia elevada</td>
+                <td>Ligado à instabilidade emocional</td>
+                <td>Menos característico</td>
+                <td>Não é característica central</td>
+              </tr>
+              <tr>
+                <td><strong>Necessidade de Estímulo</strong></td>
+                <td>Busca complexidade e novidade</td>
+                <td>Busca novidade e recompensa</td>
+                <td>Estímulos específicos/repetitivos</td>
+                <td>Atividades na elevação de humor</td>
+                <td>Busca intensidade emocional</td>
+                <td>Busca segurança</td>
+                <td>Busca certeza/controle</td>
+              </tr>
+              <tr>
+                <td><strong>Sens. Sensorial</strong></td>
+                <td>Pode ocorrer</td>
+                <td>Pode ocorrer</td>
+                <td>Muito relevante</td>
+                <td>Não central</td>
+                <td>Não central</td>
+                <td>Por hiperativação</td>
+                <td>Pode existir, mas não central</td>
+              </tr>
+              <tr>
+                <td><strong>Sentir-se Diferente</strong></td>
+                <td>Discrepância intelectual/interesses</td>
+                <td>Dificuldades executivas</td>
+                <td>Diferenças sociocomunicativas</td>
+                <td>Função dos episódios</td>
+                <td>Identidade e relações</td>
+                <td>Insegurança</td>
+                <td>Medo de errar/contaminação</td>
+              </tr>
+              <tr>
+                <td><strong>Intensidade Emocional</strong></td>
+                <td>Pode ser elevada</td>
+                <td>Dificuldade de regulação</td>
+                <td>Sobrecarga sensorial</td>
+                <td>Marcadamente episódica</td>
+                <td>Muito relevante (interpessoal)</td>
+                <td>Elevada em torno de ameaças</td>
+                <td>Ligada às obsessões</td>
+              </tr>
+              <tr>
+                <td><strong>Impulsividade</strong></td>
+                <td>Não definidora</td>
+                <td>Central</td>
+                <td>Não central</td>
+                <td>Aumenta na mania</td>
+                <td>Aparece em crises</td>
+                <td>Geralmente não central</td>
+                <td>Geralmente não central</td>
+              </tr>
+              <tr>
+                <td><strong>Oscilação Produtividade</strong></td>
+                <td>Depende de interesse/desafio</td>
+                <td>Muito variável</td>
+                <td>Depende de estrutura</td>
+                <td>Episódios distintos</td>
+                <td>Acompanha estados emocionais</td>
+                <td>Acompanha ansiedade</td>
+                <td>Depende das obsessões</td>
+              </tr>
+              <tr>
+                <td><strong>Problemas Sociais</strong></td>
+                <td>Diferença de ritmo/interesses</td>
+                <td>Impulsividade/desatenção</td>
+                <td>Núcleo diagnóstico</td>
+                <td>Durante episódios</td>
+                <td>Relações instáveis</td>
+                <td>Evitação por avaliação</td>
+                <td>Evitação por obsessões</td>
+              </tr>
+              <tr>
+                <td><strong>Perfeccionismo</strong></td>
+                <td>Pode ser elevado</td>
+                <td>Compensação</td>
+                <td>Relacionado à rigidez</td>
+                <td>Não central</td>
+                <td>Pode aparecer</td>
+                <td>Muito comum</td>
+                <td>Necessidade de certeza</td>
+              </tr>
+              <tr>
+                <td><strong>Necessidade de Rotina</strong></td>
+                <td>Prefere organização</td>
+                <td>Precisa de estrutura</td>
+                <td>Rigidez/previsibilidade relevante</td>
+                <td>Varia com humor</td>
+                <td>Rotina traz segurança</td>
+                <td>Reduz ansiedade</td>
+                <td>Reduz ansiedade</td>
+              </tr>
+              <tr>
+                <td><strong>Sono Reduzido sem Cansaço</strong></td>
+                <td>Horário irregular</td>
+                <td>Desregulação</td>
+                <td>Alterações de sono</td>
+                <td>Sinal de elevação de humor</td>
+                <td>Ocorre em crises</td>
+                <td>Insônia</td>
+                <td>Insônia por obsessões</td>
+              </tr>
+              <tr>
+                <td><strong>Fala Muito</strong></td>
+                <td>Entusiasmo intelectual</td>
+                <td>Impulsividade</td>
+                <td>Temas de interesse</td>
+                <td>Aumentada em episódios</td>
+                <td>Estados emocionais</td>
+                <td>Ansiedade</td>
+                <td>Busca reasseguramento</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="autor-credito">
+          Ferramenta Psicoeducativa de Apoio Clínico &bull; Jully Kutsk Maieski
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const perfisFoco = {
       ahsd: { nome: "AH/SD (Altas Habilidades / Superdotação)", prioridades: ["nutricao_intelectual", "autocompaixao", "produtividade_criativa", "ansiedade"] },
@@ -981,9 +1183,20 @@
     function fecharModalTermos() {
       document.getElementById('modal-termos').classList.remove('open');
     }
+    function abrirModalMapa() {
+      document.getElementById('modal-mapa').classList.add('open');
+    }
+    function fecharModalMapa() {
+      document.getElementById('modal-mapa').classList.remove('open');
+    }
     function fecharModalFora(event) {
       if (event.target.id === 'modal-termos') {
         fecharModalTermos();
+      }
+    }
+    function fecharModalMapaFora(event) {
+      if (event.target.id === 'modal-mapa') {
+        fecharModalMapa();
       }
     }
     function alterarPerfilDiagnostico(perfilChave) {
