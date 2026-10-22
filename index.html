@@ -223,6 +223,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
   border-color: var(--accent-color);
   color: var(--accent-color);
 }
+
 .anotacao-criterio {
   width: 100%; background: var(--btn-bg); border: 1px solid var(--border-light); border-radius: 6px;
   color: var(--text-main); padding: 8px; font-size: 0.82rem; resize: vertical; min-height: 44px;
@@ -387,7 +388,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="O que o corpo está sentindo / Tremores, pensamentos fixos..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: O que gatilhou esse estado? Onde você sente no corpo? Qual pensamento se repete?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="crise_existencial">
@@ -401,7 +402,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Suas tarefas hoje conversam com seus valores? O que te trouxe sensação de utilidade ou vazio?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="vitalidade">
@@ -415,7 +416,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Em qual momento do dia sua energia caiu mais? O cansaço é mais mental ou físico?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="sobrecarga">
@@ -429,7 +430,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Qual estímulo do ambiente mais incomodou (luz, som, rotina)? Conseguiu fazer pausas de descompressão?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="autocompaixao">
@@ -443,7 +444,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Como você falou consigo mesmo quando algo deu errado hoje? Exigiu de si mais do que devia?"></textarea>
     </div>
 
     <!-- Seção: Foco & Cognição -->
@@ -460,7 +461,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Seu cérebro recebeu novidade/complexidade suficiente ou ficou entediado com tarefas repetitivas?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="foco_estudos">
@@ -474,7 +475,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: O que mais tirou sua atenção? Conseguiu iniciar sem travar no primeiro passo?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="produtividade_criativa">
@@ -488,9 +489,10 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Suas ideias fluíram ou houve bloqueio? Sentiu satisfação ao concluir as entregas de hoje?"></textarea>
     </div>
-<!-- Seção: Saúde Integral & Rotina -->
+
+    <!-- Seção: Saúde Integral & Rotina -->
     <div class="categoria-titulo">Saúde Integral & Rotina</div>
 
     <div class="criterio-card" data-key="qualidade_sono">
@@ -504,7 +506,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Demorou para adormecer? Acordou muitas vezes durante a noite ou levantou descansado?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="rotinas_autocuidado">
@@ -518,7 +520,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Quais pequenos rituais de cuidado pessoal você conseguiu manter hoje? Faltou tempo para si?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="alimentacao">
@@ -532,7 +534,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Comeu nos horários certos? Houve exagero ou pulou refeições por ansiedade/correria?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="hidratacao">
@@ -546,7 +548,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Manteve uma garrafa por perto? Sentiu sinais de desidratação (boca seca, dor de cabeça)?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="exercicios">
@@ -560,7 +562,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Conseguiu colocar o corpo em movimento? Como o corpo reagiu após a atividade física?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="cuidados_medicos">
@@ -574,7 +576,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Tomou as medicações no horário correto? Observou algum sintoma físico que precisa relatar ao médico?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="rotina_domestica">
@@ -588,7 +590,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: A bagunça física do ambiente impactou sua clareza mental hoje? O que conseguiu manter organizado?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="gestao_financeira">
@@ -602,7 +604,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Fez alguma compra por impulso emocional hoje? Conseguiu manter o foco nas suas metas de orçamento?"></textarea>
     </div>
 
     <!-- Seção: Conexões & Lazer -->
@@ -619,7 +621,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Houve algum ruído ou mal-entendido na comunicação? Sentiu-se acolhido(a) nas suas trocas de hoje?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="conexao_social">
@@ -633,7 +635,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Sentiu-se parte do seu grupo ou preferiu se isolar? A energia social descarregou sua bateria?"></textarea>
     </div>
 
     <div class="criterio-card" data-key="hobbies">
@@ -647,7 +649,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
         <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
       </div>
       <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Anotação / observação sobre este critério..."></textarea>
+      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Conseguiu se desligar das obrigações durante o momento de descanso? Teve tempo de qualidade com o que gosta?"></textarea>
     </div>
 
     <!-- Painel Fixo de Saldo e Ação -->
@@ -717,6 +719,7 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
     </div>
   </div>
 </div>
+
 <!-- Rodapé -->
 <footer class="app-footer">
   <span>Armazenamento Local (LGPD) •</span>
@@ -1139,6 +1142,7 @@ const categoriasAreas = {
 
 let instChartLinha = null;
 let instChartRadar = null;
+
 function alternarTema() {
   const body = document.body;
   const btn = document.getElementById('theme-toggle');
@@ -1478,7 +1482,8 @@ function renderizarEvolucao() {
       textoTendencia = `Identifica-se período de <strong>maior vulnerabilidade neuroemocional</strong> para o perfil selecionado. Em apenas <strong>${pctSobrecargaOk}% dos dias</strong> a sobrecarga esteve totalmente sob controle.`;
     }
   }
-let textoResumoAnotacoes = "";
+
+  let textoResumoAnotacoes = "";
   const regComObs = ultimos30.slice().reverse().find(r => {
     return Object.values(r.criterios).some(c => c.observacao && c.observacao.length > 0);
   });
@@ -1733,7 +1738,8 @@ function gerarPDFMensal() {
     });
     y += 4;
   });
-doc.setTextColor(0,0,0);
+
+  doc.setTextColor(0,0,0);
   const pautaTexto = localStorage.getItem('dashboard_clinica_pauta') || "";
   if (pautaTexto.trim() !== "") {
     if (y > 230) {
