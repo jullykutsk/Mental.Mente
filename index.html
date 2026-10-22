@@ -5,13 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard Psicoeducativo de Autorregulação</title>
 <style>
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#b8866b">
-<!-- FIM DO CÓDIGO DO ÍCONE -->
-
-<style>
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
 
 /* Variáveis de Tema Noite */
@@ -179,11 +172,17 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
 .aba-conteudo { display: none; }
 .aba-conteudo.active { display: block; }
 
+/* Acordeão de Categorias */
 .categoria-titulo {
-  display: flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 600;
+  display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; font-weight: 600;
   color: var(--text-dimmed); margin: 18px 0 10px 0; background: var(--cat-bg);
-  border-left: 4px solid var(--accent-color); padding: 8px 10px; border-radius: 4px;
+  border-left: 4px solid var(--accent-color); padding: 8px 10px; border-radius: 4px; cursor: pointer;
+  user-select: none; transition: background 0.2s;
 }
+.categoria-titulo:hover { background: var(--border-light); color: var(--text-main); }
+.categoria-seta { font-size: 0.8rem; transition: transform 0.3s ease; }
+.categoria-grupo { display: flex; flex-direction: column; transition: all 0.3s ease; overflow: hidden; }
+.categoria-grupo.recolhido { max-height: 0; opacity: 0; margin: 0; pointer-events: none; }
 
 .criterio-card {
   background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px;
@@ -382,281 +381,297 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
     </div>
 
     <!-- Seção: Dimensão Neuroemocional -->
-    <div class="categoria-titulo">Dimensão Neuroemocional</div>
-    
-    <div class="criterio-card" data-key="ansiedade">
-      <div class="criterio-nome">Ansiedade, Inquietação & Ruminação</div>
-      <div class="criterio-legenda">1 = Nó no peito/pensamentos travados em loop; 3 = Desconforto leve, mas executando tarefas; 5 = Corpo calmo e pensamentos fluidos.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
-      </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: O que gatilhou esse estado? Onde você sente no corpo? Qual pensamento se repete?"></textarea>
+    <div class="categoria-titulo" onclick="toggleSecao(this)">
+      <span>Dimensão Neuroemocional</span>
+      <span class="categoria-seta">▼</span>
     </div>
-
-    <div class="criterio-card" data-key="crise_existencial">
-      <div class="criterio-nome">Sentido das Ações & Vazio Prático</div>
-      <div class="criterio-legenda">1 = Desconexão total ("para que fazer isso?"); 3 = Cumprindo tarefas por obrigação; 5 = Sensação clara de utilidade/propósito no dia.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+    <div class="categoria-grupo">
+      <div class="criterio-card" data-key="ansiedade">
+        <div class="criterio-nome">Ansiedade, Inquietação & Ruminação</div>
+        <div class="criterio-legenda">1 = Nó no peito/pensamentos travados em loop; 3 = Desconforto leve, mas executando tarefas; 5 = Corpo calmo e pensamentos fluidos.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: O que gatilhou esse estado? Onde você sente no corpo? Qual pensamento se repete?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Suas tarefas hoje conversam com seus valores? O que te trouxe sensação de utilidade ou vazio?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="vitalidade">
-      <div class="criterio-nome">Energia Corporal & Vitalidade</div>
-      <div class="criterio-legenda">1 = Sensação de peso físico, exaustão ao levantar; 3 = Bateria razoável para o básico; 5 = Disposição física e mental para agir sem esforço extremo.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="crise_existencial">
+        <div class="criterio-nome">Sentido das Ações & Vazio Prático</div>
+        <div class="criterio-legenda">1 = Desconexão total ("para que fazer isso?"); 3 = Cumprindo tarefas por obrigação; 5 = Sensação clara de utilidade/propósito no dia.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Suas tarefas hoje conversam com seus valores? O que te trouxe sensação de utilidade ou vazio?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Em qual momento do dia sua energia caiu mais? O cansaço é mais mental ou físico?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="sobrecarga">
-      <div class="criterio-nome">Sobrecarga Sensorial</div>
-      <div class="criterio-legenda">1 = Hipersensibilidade/Irritação extrema; 3 = Desconforto pontual; 5 = Ambiente regulado.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="vitalidade">
+        <div class="criterio-nome">Energia Corporal & Vitalidade</div>
+        <div class="criterio-legenda">1 = Sensação de peso físico, exaustão ao levantar; 3 = Bateria razoável para o básico; 5 = Disposição física e mental para agir sem esforço extremo.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Em qual momento do dia sua energia caiu mais? O cansaço é mais mental ou físico?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Qual estímulo do ambiente mais incomodou (luz, som, rotina)? Conseguiu fazer pausas de descompressão?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="autocompaixao">
-      <div class="criterio-nome">Autocompaixão & Flexibilidade</div>
-      <div class="criterio-legenda">1 = Autocrítica destrutiva; 3 = Aceitação razoável; 5 = Diálogo interno acolhedor.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="sobrecarga">
+        <div class="criterio-nome">Sobrecarga Sensorial</div>
+        <div class="criterio-legenda">1 = Hipersensibilidade/Irritação extrema; 3 = Desconforto pontual; 5 = Ambiente regulado.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Qual estímulo do ambiente mais incomodou (luz, som, rotina)? Conseguiu fazer pausas de descompressão?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Como você falou consigo mesmo quando algo deu errado hoje? Exigiu de si mais do que devia?"></textarea>
+
+      <div class="criterio-card" data-key="autocompaixao">
+        <div class="criterio-nome">Autocompaixão & Flexibilidade</div>
+        <div class="criterio-legenda">1 = Autocrítica destrutiva; 3 = Aceitação razoável; 5 = Diálogo interno acolhedor.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Como você falou consigo mesmo quando algo deu errado hoje? Exigiu de si mais do que devia?"></textarea>
+      </div>
     </div>
 
     <!-- Seção: Foco & Cognição -->
-    <div class="categoria-titulo">Foco & Cognição</div>
-
-    <div class="criterio-card" data-key="nutricao_intelectual">
-      <div class="criterio-nome">Nutrição Intelectual / Estimulação</div>
-      <div class="criterio-legenda">1 = Tédio/Subestimulação severa; 3 = Aprendizado básico; 5 = Hiperfoco produtivo/Estímulo ideal.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
-      </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Seu cérebro recebeu novidade/complexidade suficiente ou ficou entediado com tarefas repetitivas?"></textarea>
+    <div class="categoria-titulo" onclick="toggleSecao(this)">
+      <span>Foco & Cognição</span>
+      <span class="categoria-seta">▼</span>
     </div>
-
-    <div class="criterio-card" data-key="foco_estudos">
-      <div class="criterio-nome">Foco nos Estudos / Projetos</div>
-      <div class="criterio-legenda">1 = Dispersão total; 3 = Foco parcial; 5 = Execução fluida sem distrações.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+    <div class="categoria-grupo">
+      <div class="criterio-card" data-key="nutricao_intelectual">
+        <div class="criterio-nome">Nutrição Intelectual / Estimulação</div>
+        <div class="criterio-legenda">1 = Tédio/Subestimulação severa; 3 = Aprendizado básico; 5 = Hiperfoco produtivo/Estímulo ideal.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Seu cérebro recebeu novidade/complexidade suficiente ou ficou entediado com tarefas repetitivas?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: O que mais tirou sua atenção? Conseguiu iniciar sem travar no primeiro passo?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="produtividade_criativa">
-      <div class="criterio-nome">Produtividade Criativa / Trabalho</div>
-      <div class="criterio-legenda">1 = Bloqueio criativo; 3 = Entregas essenciais; 5 = Alto fluxo criativo e realização.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="foco_estudos">
+        <div class="criterio-nome">Foco nos Estudos / Projetos</div>
+        <div class="criterio-legenda">1 = Dispersão total; 3 = Foco parcial; 5 = Execução fluida sem distrações.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: O que mais tirou sua atenção? Conseguiu iniciar sem travar no primeiro passo?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Suas ideias fluíram ou houve bloqueio? Sentiu satisfação ao concluir as entregas de hoje?"></textarea>
+
+      <div class="criterio-card" data-key="produtividade_criativa">
+        <div class="criterio-nome">Produtividade Criativa / Trabalho</div>
+        <div class="criterio-legenda">1 = Bloqueio criativo; 3 = Entregas essenciais; 5 = Alto fluxo criativo e realização.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Suas ideias fluíram ou houve bloqueio? Sentiu satisfação ao concluir as entregas de hoje?"></textarea>
+      </div>
     </div>
 
     <!-- Seção: Saúde Integral & Rotina -->
-    <div class="categoria-titulo">Saúde Integral & Rotina</div>
-
-    <div class="criterio-card" data-key="qualidade_sono">
-      <div class="criterio-nome">Qualidade do Sono</div>
-      <div class="criterio-legenda">1 = Insônia/Sono não reparador; 3 = Sono mediano; 5 = Descanso profundo e revigorante.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
-      </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Demorou para adormecer? Acordou muitas vezes durante a noite ou levantou descansado?"></textarea>
+    <div class="categoria-titulo" onclick="toggleSecao(this)">
+      <span>Saúde Integral & Rotina</span>
+      <span class="categoria-seta">▼</span>
     </div>
-
-    <div class="criterio-card" data-key="rotinas_autocuidado">
-      <div class="criterio-nome">Rotinas de Autocuidado</div>
-      <div class="criterio-legenda">1 = Abandono total de si; 3 = Higiene e cuidados básicos; 5 = Rituais de bem-estar completos.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+    <div class="categoria-grupo">
+      <div class="criterio-card" data-key="qualidade_sono">
+        <div class="criterio-nome">Qualidade do Sono</div>
+        <div class="criterio-legenda">1 = Insônia/Sono não reparador; 3 = Sono mediano; 5 = Descanso profundo e revigorante.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Demorou para adormecer? Acordou muitas vezes durante a noite ou levantou descansado?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Quais pequenos rituais de cuidado pessoal você conseguiu manter hoje? Faltou tempo para si?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="alimentacao">
-      <div class="criterio-nome">Alimentação Equilibrada</div>
-      <div class="criterio-legenda">1 = Ultraprocessados/Compulsão; 3 = Alimentação razoável; 5 = Refeições nutritivas.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="rotinas_autocuidado">
+        <div class="criterio-nome">Rotinas de Autocuidado</div>
+        <div class="criterio-legenda">1 = Abandono total de si; 3 = Higiene e cuidados básicos; 5 = Rituais de bem-estar completos.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Quais pequenos rituais de cuidado pessoal você conseguiu manter hoje? Faltou tempo para si?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Comeu nos horários certos? Houve exagero ou pulou refeições por ansiedade/correria?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="hidratacao">
-      <div class="criterio-nome">Hidratação</div>
-      <div class="criterio-legenda">1 = Sem consumo de água; 3 = Ingestão moderada; 5 = Metas de hidratação atingidas.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="alimentacao">
+        <div class="criterio-nome">Alimentação Equilibrada</div>
+        <div class="criterio-legenda">1 = Ultraprocessados/Compulsão; 3 = Alimentação razoável; 5 = Refeições nutritivas.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Comeu nos horários certos? Houve exagero ou pulou refeições por ansiedade/correria?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Manteve uma garrafa por perto? Sentiu sinais de desidratação (boca seca, dor de cabeça)?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="exercicios">
-      <div class="criterio-nome">Exercícios / Movimento</div>
-      <div class="criterio-legenda">1 = Sedentarismo absoluto; 3 = Movimentação leve; 5 = Treino/Atividade completa.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="hidratacao">
+        <div class="criterio-nome">Hidratação</div>
+        <div class="criterio-legenda">1 = Sem consumo de água; 3 = Ingestão moderada; 5 = Metas de hidratação atingidas.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Manteve uma garrafa por perto? Sentiu sinais de desidratação (boca seca, dor de cabeça)?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Conseguiu colocar o corpo em movimento? Como o corpo reagiu após a atividade física?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="cuidados_medicos">
-      <div class="criterio-nome">Cuidados Médicos & Medicação</div>
-      <div class="criterio-legenda">1 = Esqueceu medicação/sintomas ignorados; 3 = Parcialmente cumprido; 5 = Prescrições e rotina em dia.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="exercicios">
+        <div class="criterio-nome">Exercícios / Movimento</div>
+        <div class="criterio-legenda">1 = Sedentarismo absoluto; 3 = Movimentação leve; 5 = Treino/Atividade completa.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Conseguiu colocar o corpo em movimento? Como o corpo reagiu após a atividade física?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Tomou as medicações no horário correto? Observou algum sintoma físico que precisa relatar ao médico?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="rotina_domestica">
-      <div class="criterio-nome">Rotina Doméstica / Organização</div>
-      <div class="criterio-legenda">1 = Caos/Acúmulo; 3 = Tarefas básicas em dia; 5 = Ambiente limpo e estruturado.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="cuidados_medicos">
+        <div class="criterio-nome">Cuidados Médicos & Medicação</div>
+        <div class="criterio-legenda">1 = Esqueceu medicação/sintomas ignorados; 3 = Parcialmente cumprido; 5 = Prescrições e rotina em dia.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Tomou as medicações no horário correto? Observou algum sintoma físico que precisa relatar ao médico?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: A bagunça física do ambiente impactou sua clareza mental hoje? O que conseguiu manter organizado?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="gestao_financeira">
-      <div class="criterio-nome">Gestão Financeira</div>
-      <div class="criterio-legenda">1 = Impulsividade/Estresse financeiro; 3 = Gastos sob controle; 5 = Planejamento e economia rigorosos.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="rotina_domestica">
+        <div class="criterio-nome">Rotina Doméstica / Organização</div>
+        <div class="criterio-legenda">1 = Caos/Acúmulo; 3 = Tarefas básicas em dia; 5 = Ambiente limpo e estruturado.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: A bagunça física do ambiente impactou sua clareza mental hoje? O que conseguiu manter organizado?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Fez alguma compra por impulso emocional hoje? Conseguiu manter o foco nas suas metas de orçamento?"></textarea>
+
+      <div class="criterio-card" data-key="gestao_financeira">
+        <div class="criterio-nome">Gestão Financeira</div>
+        <div class="criterio-legenda">1 = Impulsividade/Estresse financeiro; 3 = Gastos sob controle; 5 = Planejamento e economia rigorosos.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Fez alguma compra por impulso emocional hoje? Conseguiu manter o foco nas suas metas de orçamento?"></textarea>
+      </div>
     </div>
 
     <!-- Seção: Conexões & Lazer -->
-    <div class="categoria-titulo">Conexões & Lazer</div>
-
-    <div class="criterio-card" data-key="relacionamento">
-      <div class="criterio-nome">Relacionamento Afetivo / Social</div>
-      <div class="criterio-legenda">1 = Isolamento doloroso/Conflito; 3 = Trocas superficiais; 5 = Conexão profunda e acolhedora.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
-      </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Houve algum ruído ou mal-entendido na comunicação? Sentiu-se acolhido(a) nas suas trocas de hoje?"></textarea>
+    <div class="categoria-titulo" onclick="toggleSecao(this)">
+      <span>Conexões & Lazer</span>
+      <span class="categoria-seta">▼</span>
     </div>
-
-    <div class="criterio-card" data-key="conexao_social">
-      <div class="criterio-nome">Conexão Social & Sentido de Pertencimento</div>
-      <div class="criterio-legenda">1 = Isolamento/Alienação; 3 = Interações funcionais/Rede limitada; 5 = Rede sólida e pertença clara.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+    <div class="categoria-grupo">
+      <div class="criterio-card" data-key="relacionamento">
+        <div class="criterio-nome">Relacionamento Afetivo / Social</div>
+        <div class="criterio-legenda">1 = Isolamento doloroso/Conflito; 3 = Trocas superficiais; 5 = Conexão profunda e acolhedora.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Houve algum ruído ou mal-entendido na comunicação? Sentiu-se acolhido(a) nas suas trocas de hoje?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Sentiu-se parte do seu grupo ou preferiu se isolar? A energia social descarregou sua bateria?"></textarea>
-    </div>
 
-    <div class="criterio-card" data-key="hobbies">
-      <div class="criterio-nome">Hobbies & Desconexão</div>
-      <div class="criterio-legenda">1 = Sem tempo para si/Cansaço; 3 = Lazer passivo; 5 = Imersão em hobbies/Desconexão real.</div>
-      <div class="botoes-escala">
-        <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
-        <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
-        <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+      <div class="criterio-card" data-key="conexao_social">
+        <div class="criterio-nome">Conexão Social & Sentido de Pertencimento</div>
+        <div class="criterio-legenda">1 = Isolamento/Alienação; 3 = Interações funcionais/Rede limitada; 5 = Rede sólida e pertença clara.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Sentiu-se parte do seu grupo ou preferiu se isolar? A energia social descarregou sua bateria?"></textarea>
       </div>
-      <div class="atalhos-container"></div>
-      <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Conseguiu se desligar das obrigações durante o momento de descanso? Teve tempo de qualidade com o que gosta?"></textarea>
+
+      <div class="criterio-card" data-key="hobbies">
+        <div class="criterio-nome">Hobbies & Desconexão</div>
+        <div class="criterio-legenda">1 = Sem tempo para si/Cansaço; 3 = Lazer passivo; 5 = Imersão em hobbies/Desconexão real.</div>
+        <div class="botoes-escala">
+          <button class="btn-escala" onclick="selecionarValor(this, 1)">1</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 2)">2</button>
+          <button class="btn-escala selected" onclick="selecionarValor(this, 3)">3</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 4)">4</button>
+          <button class="btn-escala" onclick="selecionarValor(this, 5)">5</button>
+        </div>
+        <div class="atalhos-container"></div>
+        <textarea class="anotacao-criterio" placeholder="Perguntas estratégicas: Conseguiu se desligar das obrigações durante o momento de descanso? Teve tempo de qualidade com o que gosta?"></textarea>
+      </div>
     </div>
 
     <!-- Painel Fixo de Saldo e Ação -->
@@ -966,6 +981,18 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 12px;
 </div>
 
 <script>
+// Função para expandir e encolher as seções de categorias
+function toggleSecao(elementoTitulo) {
+  const grupo = elementoTitulo.nextElementSibling;
+  const seta = elementoTitulo.querySelector('.categoria-seta');
+  grupo.classList.toggle('recolhido');
+  if (grupo.classList.contains('recolhido')) {
+    seta.style.transform = 'rotate(-90deg)';
+  } else {
+    seta.style.transform = 'rotate(0deg)';
+  }
+}
+
 // Base de dados das opções de atalhos ajustáveis dinamicamente de acordo com a nota de 1 a 5
 const opcoesAtalhos = {
   ansiedade: {
